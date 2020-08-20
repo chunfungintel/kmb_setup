@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kmb-media-only-job-2
+  labels:
+    jobgroup: intelkmb-demo
+spec:
+  template:
+    metadata:
+      labels:
+        jobgroup: intelkmb-demo
+        vpu.intel.com/codec-usage: medium
+    spec:
+      restartPolicy: Never
+      containers:
+        -
+          name: kmb-full
+          image: gar-registry.caas.intel.com/virtiot/kmb_standalone:latest
+          securityContext:
+            capabilities:
+              add: ["SYS_RAWIO"]
+          command: [ "/bin/bash", "/data/launch_gst_media.sh"]
+          resources:
+            limits:
+              kmb.intel.com/codec: 1

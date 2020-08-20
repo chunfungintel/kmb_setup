@@ -1,0 +1,12 @@
+[Unit]
+Description=sync date Service
+Wants=network-online.target
+
+[Service]
+EnvironmentFile=/etc/environment
+Restart=always
+RestartSec=60s
+ExecStart=/etc/init.d/syncdate
+
+[Install]
+WantedBy=multi-user.target

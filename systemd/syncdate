@@ -1,0 +1,3 @@
+#!/bin/sh
+date -s "$(curl --head -sS -H 'Cache-Control: no-cache' 'bing.com/'  | grep '^Date:' | cut -d' ' -f3-6)Z"
+

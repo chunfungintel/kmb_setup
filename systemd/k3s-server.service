@@ -1,0 +1,31 @@
+[Unit]
+Description=Lightweight Kubernetes
+Documentation=https://k3s.io
+Wants=network-online.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=notify
+EnvironmentFile=/etc/environment
+KillMode=process
+Delegate=yes
+# Having non-zero Limit*s causes performance problems due to accounting overhead
+# in the kernel. We recommend using cgroups to do container-local accounting.
+LimitNOFILE=1048576
+LimitNPROC=infinity
+LimitCORE=infinity
+TasksMax=infinity
+TimeoutStartSec=0
+Restart=always
+RestartSec=5s
+ExecStartPre=-/sbin/modprobe br_netfilter
+ExecStartPre=-/sbin/modprobe overlay
+ExecStart=/usr/bin/k3s server \
+   --docker \
+   --token 1234 \
+   --datastore-endpoint="mysql://myuser:mypass@tcp(10.226.76.18:3306)/k3s4" \
+   --tls-san 10.226.76.18 \
+   --kube-scheduler-arg="config=/etc/kubernetes/sched-config-k3s.yaml"
+
