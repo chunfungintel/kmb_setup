@@ -13,11 +13,15 @@ function SED_FORCE {
     replace=$2
     file=$3
 
-    sed -i "/$original/!{q100} ; s/$original/$replace/" $file
-    if [ $? -eq 100 ]; then
+    grep "$original" "$file" > /dev/null
+    ret=$?
+    if [ $ret -ne "0" ]; then
         echo "Error: $original not found in $file!!!"
-	echo "Error: $replace set failed!!!"
+        echo "Error: $replace set failed!!!"
+	return
     fi
+
+    sed -i "s/$original/$replace/" $file
 }
 
 SYSTEMD_EDITOR=tee systemctl edit iotedge <<EOF
@@ -39,8 +43,8 @@ systemctl restart docker
 chmod +w /etc/iotedge/config.yaml
 
 HOST=`hostname`
-sed -i "s/<ADD HOSTNAME HERE>/$HOST/" $IOTEDGE_CONFIG
-#SED_FORCE "<ADD HOSTNAME HERE>" $HOST /etc/iotedge/config.yaml
+#sed -i "s/<ADD HOSTNAME HERE>/$HOST/" $IOTEDGE_CONFIG
+SED_FORCE "<ADD HOSTNAME HERE>" $HOST /etc/iotedge/config.yaml
 
 if [ -z "$1" ]; then
 
@@ -49,8 +53,8 @@ echo "Then run systemctl restart iotedge"
 
 else
 
-sed -i "s/<ADD DEVICE CONNECTION STRING HERE>/$device/" $IOTEDGE_CONFIG
-#SED_FORCE "<ADD DEVICE CONNECTION STRING HERE>" $device /etc/iotedge/config.yaml
+#sed -i "s/<ADD DEVICE CONNECTION STRING HERE>/$device/" $IOTEDGE_CONFIG
+SED_FORCE "<ADD DEVICE CONNECTION STRING HERE>" $device /etc/iotedge/config.yaml
 systemctl restart iotedge
 
 fi
