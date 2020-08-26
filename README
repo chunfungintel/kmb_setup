@@ -35,4 +35,8 @@ Worker node:
 
 
 
-
+## HDDLUnite Centos
+Centos:
+1. Docker installation: ./hddl_centos/01_docker.sh
+2. Kubernetes installation: ./hddl_centos/02_kubernetes.sh
+3. Intel proxy and certificate setup: ./hddl_centos/setup_intel_ia_centos.sh 

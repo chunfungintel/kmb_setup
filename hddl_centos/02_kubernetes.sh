@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Official guide: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/"
+
 if [ -z "$1" ]; then
    echo 'Must set hostname!'
    exit
