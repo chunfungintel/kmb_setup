@@ -19,6 +19,7 @@ Main and worker node:
 
 Main node:
 1. Start k8s service: ./k8s/master/setup_k8s_master.sh
+2. Start resource services: ./k8s/master/create_master_services.sh
 
 Worker node:
 1. Run ./k8s/master/join_k8s_command.sh in MASTER NODE.
