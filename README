@@ -1,27 +1,27 @@
 ## k3s:
-Main and worker node:
+### Main and worker node:
 1. ./setup_kmb.sh "node_name"
 2. reboot
 
-Main node:
+### Main node:
 1. Start k3s service: ./k3s/master/Setup_02.sh
 2. Launch device plugin, ros and prometheus: ./k3s/master/Setup_03.sh
 
-Worker node:
+### Worker node:
 1. STart k3s service with joining master: ./k3s/worker/launch.sh "master_ip_address"
 
 
 
 ## k8s:
-Main and worker node:
+### Main and worker node:
 1. ./setup_kmb.sh "node_name"
 2. reboot
 
-Main node:
+### Main node:
 1. Start k8s service: ./k8s/master/setup_k8s_master.sh
 2. Start resource services: ./k8s/master/create_master_services.sh
 
-Worker node:
+### Worker node:
 1. Run ./k8s/master/join_k8s_command.sh in MASTER NODE.
 2. Run the command created in step 1 at WORKER NODE.
 
@@ -36,7 +36,21 @@ Worker node:
 
 
 ## HDDLUnite Centos
-Centos:
+### Centos main and worker node:
 1. Docker installation: ./hddl_centos/01_docker.sh
 2. Kubernetes installation: ./hddl_centos/02_kubernetes.sh
-3. Intel proxy and certificate setup: ./hddl_centos/setup_intel_ia_centos.sh 
+3. Intel proxy and certificate setup: ./hddl_centos/setup_intel_ia_centos.sh
+4. Module installation: xlink 
+
+Main node:
+1. Start k8s service: ./hddl_centos/master/setup_k8s_master.sh
+2. Start resource services: ./hddl_centos/master/create_master_services.sh
+
+
+Worker node:
+1. Run ./hddl_centos/master/join_k8s_command.sh in MASTER NODE.
+2. Run the command created in step 1 at WORKER NODE.
+
+
+
+
