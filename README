@@ -40,7 +40,10 @@
 1. Docker installation: ./hddl_centos/01_docker.sh
 2. Kubernetes installation: ./hddl_centos/02_kubernetes.sh
 3. Intel proxy and certificate setup: ./hddl_centos/setup_intel_ia_centos.sh
-4. Module installation: xlink 
+4. Module installation: xlink (https://wiki.ith.intel.com/pages/viewpage.action?pageId=1476473044#Setupvaapi-bypasswithhddlunite-1.PrepareXLinkIAkerenelmodule)
+5. Keem Bay device auto connect on boot: https://wiki.ith.intel.com/pages/viewpage.action?pageId=1622041497#KMBUTTMilestone#ER_WW312020_MSFT-NVRBypass-5.1[Optional]Howtoenablehddl_device_serviceautoboot
+
+
 
 Main node:
 1. Start k8s service: ./hddl_centos/master/setup_k8s_master.sh
