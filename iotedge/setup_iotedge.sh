@@ -33,11 +33,6 @@ systemctl restart iotedge
 systemctl show --property=Environment iotedge
 
 
-cat <<EOF > /etc/docker/daemon.json
-{
-    "dns": ["10.248.2.1"]
-}
-EOF
 systemctl restart docker
 
 chmod +w /etc/iotedge/config.yaml

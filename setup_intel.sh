@@ -146,6 +146,12 @@ echo "{
         }
 }" > ~/.docker/config.json
 
+cat <<EOF > /etc/docker/daemon.json
+{
+    "dns": ["10.248.2.1"]
+}
+EOF
+
 if [ ! -d /data/docker ]; then 
   mv /var/lib/docker /data/
   ln -s /data/docker /var/lib/docker
