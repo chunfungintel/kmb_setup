@@ -1,0 +1,44 @@
+{
+  "Entrypoint": ["/bin/bash", "/data/launch_gst_full.sh"],
+  "HostConfig": {
+    "Binds": [
+      "/data:/data"
+    ],
+    "CapAdd": [
+                "SYS_RAWIO"
+    ],
+    "Devices": [
+      {
+        "PathOnHost": "/dev/xlnk",
+        "PathInContainer": "/dev/xlnk",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/mem",
+        "PathInContainer": "/dev/mem",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/vpusmm0",
+        "PathInContainer": "/dev/vpusmm0",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/dri/renderD129",
+        "PathInContainer": "/dev/dri/renderD129",
+        "CgroupPermissions": "rwm"
+     }
+    ]
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "/data",
+      "Destination": "/data",
+      "Mode": "",
+      "RW": true,
+      "Propagation": "rslave"
+    }
+  ]
+}
+
