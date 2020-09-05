@@ -1,0 +1,22 @@
+FROM ubuntu:18.04
+
+RUN \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get -y install gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-plugins-bad libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libudev-dev qtbase5-dev libboost-program-options-dev libboost-thread-dev libboost-filesystem-dev opencl-c-headers libgstreamer-plugins-bad1.0-dev libva-dev libxrandr-dev autoconf libdrm-dev libx11-dev cmake git wget bison flex libtool pkg-config libxext-dev \
+  && apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
+
+
+COPY host_install_dir /host_install_dir
+RUN \
+  cp /host_install_dir/hddlunite/thirdparty/XLink/lib/libXLink.so  /usr/lib/libXLink.so
+
+RUN mkdir -p /opt/intel
+COPY mediasdk /opt/intel/mediasdk
+
+ENV GST_PLUGIN_SCANNER=/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner
+
+RUN usermod -aG video root
+RUN usermod -aG users root
+
+COPY run_hddl_service.sh /run_hddl_service.sh
