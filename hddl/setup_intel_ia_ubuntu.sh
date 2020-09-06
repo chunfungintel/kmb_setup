@@ -66,6 +66,12 @@ echo "{
         }
 }" > ~/.docker/config.json
 
+# Docker DNS inside Intel
+cat <<EOF > /etc/docker/daemon.json
+{
+    "dns": ["10.248.2.1"]
+}
+EOF
 
 #source /etc/os-release
 certsFile='IntelSHA2RootChain-Base64.zip'
