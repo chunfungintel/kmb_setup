@@ -8,6 +8,10 @@ RUN \
 
 
 COPY host_install_dir /host_install_dir
+COPY KPI /KPI
+COPY Test /Test
+COPY textures /textures
+
 RUN \
   cp /host_install_dir/hddlunite/thirdparty/XLink/lib/libXLink.so  /usr/lib/libXLink.so
 
@@ -20,3 +24,6 @@ RUN usermod -aG video root
 RUN usermod -aG users root
 
 COPY run_hddl_service.sh /run_hddl_service.sh
+COPY run_test.sh /run_test.sh
+COPY run_kpi.sh /run_kpi.sh
+
