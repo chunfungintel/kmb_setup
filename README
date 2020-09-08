@@ -1,3 +1,8 @@
+## File type conversion:
+1. Due to IT policy, file attachment in email must not containt script file, thus a simple script need to run first to convert all *.txt to *.sh
+2. Just run ./convert_txt_sh.txt file in bash, or you prefer to convert it to convert_txt_sh.sh first.
+
+
 ## k3s:
 ### Main and worker node:
 1. ./setup_kmb.sh "node_name"
