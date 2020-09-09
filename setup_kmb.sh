@@ -12,6 +12,9 @@ SERVER_IP=
 cp ./resources/launch_gst_* /data
 cp ./resources/cat1080_frm5.h264 /data
 cp ./resources/source* /data
+cp -r ./resources/gst-video-analytics /data
+cp -r ./resources/release_kmb /data
+
 cp -r ./resources/avc_uncontained_woBframe /data
 
 #cp -r edge-ai /etc

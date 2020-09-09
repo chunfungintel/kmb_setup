@@ -9,10 +9,10 @@ sed -i "s/$oldnum\$/$newnum/g" /data/kmb/codec
 source /data/source_container.env
 
 
-GVADETECT_MODEL=/opt/release_kmb/yolo-v2-tiny-ava-0001.blob
-GVADETECT_MODEL_PROC=/usr/share/gst-video-analytics/samples/model_proc/yolo-v2-tiny-ava-0001.json
-GVACLASSIFY_MODEL=/opt/release_kmb/resnet-50-pytorch.blob
-GVACLASSIFY_MODEL_PROC=/usr/share/gst-video-analytics/samples/model_proc/resnet-50-pytorch.json
+GVADETECT_MODEL=/data/release_kmb/yolo-v2-tiny-ava-0001.blob
+GVADETECT_MODEL_PROC=/data/gst-video-analytics/samples/model_proc/yolo-v2-tiny-ava-0001.json
+GVACLASSIFY_MODEL=/data/release_kmb/resnet-50-pytorch.blob
+GVACLASSIFY_MODEL_PROC=/data/gst-video-analytics/samples/model_proc/resnet-50-pytorch.json
 
 gst-launch-1.0 multifilesrc location=/data/cat1080_frm5.h264 num-buffers=500 \
 ! h264parse ! vaapih264dec ! "video/x-raw(memory:DMABuf)" ! capsfilter name=dma_buf \
