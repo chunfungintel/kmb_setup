@@ -12,7 +12,7 @@ fi
 
 docker login gar-registry.caas.intel.com
 
-docker tag $HDDL_IMAGE_NAME:$HDDL_IMAGE_TAG gar-registry.caas.intel.com/virtio/$HDDL_IMAGE_NAME:$HDDL_IMAGE_TAG 
+docker tag $HDDL_IMAGE_NAME:$HDDL_IMAGE_TAG gar-registry.caas.intel.com/virtiot/$HDDL_IMAGE_NAME:$HDDL_IMAGE_TAG 
 
-docker push gar-registry.caas.intel.com/virtio/$HDDL_IMAGE_NAME:$HDDL_IMAGE_TAG
+docker push gar-registry.caas.intel.com/virtiot/$HDDL_IMAGE_NAME:$HDDL_IMAGE_TAG
 
