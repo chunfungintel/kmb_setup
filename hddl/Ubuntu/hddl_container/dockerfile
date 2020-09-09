@@ -9,7 +9,7 @@ RUN \
 
 COPY host_install_dir /host_install_dir
 COPY KPI /KPI
-COPY Test /Test
+COPY test /test
 COPY textures /textures
 
 RUN \
