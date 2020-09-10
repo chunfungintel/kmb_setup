@@ -13,7 +13,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: fullpipe
-        image: gar-registry.caas.intel.com/virtiot/hddl:1.0
+        image: gar-registry.caas.intel.com/virtiot/hddlunite_connect:20200908-2044
         command: [ "/run_test.sh"]
         resources:
           limits:

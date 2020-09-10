@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: fullpipe2
+  name: fullpipex6
   labels:
     jobgroup: fullpipe
 spec:
@@ -12,8 +12,8 @@ spec:
     spec:
       restartPolicy: Never
       containers:
-      - name: fullpipe2
-        image: gar-registry.caas.intel.com/virtiot/hddl:1.0
+      - name: fullpipex6
+        image: gar-registry.caas.intel.com/virtiot/hddlunite_connect:20200908-2044
         command: [ "/run_test.sh"]
         resources:
           limits:

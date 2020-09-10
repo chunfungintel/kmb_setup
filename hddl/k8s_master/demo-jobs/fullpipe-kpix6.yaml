@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fullpipekpix6
+  labels:
+    jobgroup: fullpipe
+spec:
+  template:
+    metadata:
+      labels:
+        jobgroup: fullpipe
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: fullpipekpix6
+        image: gar-registry.caas.intel.com/virtiot/hddlunite_connect:20200908-2044
+        command: [ "/run_kpi.sh"]
+        resources:
+          limits:
+            kmb.intel.com/device: 6
+

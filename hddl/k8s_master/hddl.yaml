@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: hddl
-        image: gar-registry.caas.intel.com/virtiot/hddl:1.0
+        image: gar-registry.caas.intel.com/virtiot/hddlunite_connect:20200908-2044
         securityContext:
           privileged: true
         command: ["sh", "-c", "rm -rf /var/tmp/mode_set ; /run_hddl_service.sh"]
