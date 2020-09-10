@@ -16,7 +16,7 @@ CONTAINER_NAME=TEST01
 KPI_START=5
 
 sudo chmod 666 /dev/xlnk ; \
-sudo chmod 666 /dev/dri/card0 ;\
+
 docker run -it \
 -v /var/tmp:/var/tmp \
 --device=/dev/xlnk:/dev/xlnk \
