@@ -8,9 +8,9 @@ sudo cp ./microsoft-prod.list /etc/apt/sources.list.d/
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 sudo cp ./microsoft.gpg /etc/apt/trusted.gpg.d/
 
-#sudo apt update
-#sudo apt install -y moby-engine
-#sudo apt install -y moby-cli
+sudo apt update
+sudo apt install -y moby-engine
+sudo apt install -y moby-cli
 
 sudo apt update
 sudo apt install -y iotedge
