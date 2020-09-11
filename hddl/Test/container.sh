@@ -15,7 +15,7 @@ NAME=TEST
 KPI_START=1
 NUM_CONTAINER=6
 
-sudo chmod 666 /dev/xlnk
+#sudo chmod 666 /dev/xlnk
 
 for i in $( seq 1 $NUM_CONTAINER )
 do

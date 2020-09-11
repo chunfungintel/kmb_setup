@@ -15,7 +15,7 @@ HDDL_CONTAINER=$HDDL_IMAGE_NAME:$HDDL_IMAGE_TAG
 CONTAINER_NAME=TEST01
 KPI_START=5
 
-sudo chmod 666 /dev/xlnk ; \
+#sudo chmod 666 /dev/xlnk ; \
 
 docker run -it \
 -v /var/tmp:/var/tmp \
