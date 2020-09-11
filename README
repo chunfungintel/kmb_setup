@@ -51,8 +51,8 @@
 
 
 Main node:
-1. Start k8s service: ./hddl/master/setup_k8s_master.sh
-2. Start resource services: ./hddl/master/create_master_services.sh
+1. Start k8s service: ./hddl/k8s_master/setup_k8s_master.sh
+2. Start resource services: ./hddl/k8s_master/create_master_services.sh
 
 
 Worker node:
