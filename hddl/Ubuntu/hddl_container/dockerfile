@@ -26,4 +26,4 @@ RUN usermod -aG users root
 COPY run_hddl_service.sh /run_hddl_service.sh
 COPY run_test.sh /run_test.sh
 COPY run_kpi.sh /run_kpi.sh
-
+COPY run_forever.sh /run_forever.sh
