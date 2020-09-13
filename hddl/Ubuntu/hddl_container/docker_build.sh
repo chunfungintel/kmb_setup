@@ -10,9 +10,15 @@ if [ -z "$HDDL_IMAGE_TAG" ]; then
     exit
 fi
 
+if [ -z "$HDDL_RESOURCE_FOLDER" ]; then
+    echo "Need to set HDDL_RESOURCE_FOLDER "
+    exit
+fi
+
+
 docker build \
 --no-cache=true \
 -f ./dockerfile \
--t $HDDL_IMAGE_NAME:$HDDL_IMAGE_TAG .
+-t $HDDL_IMAGE_NAME:$HDDL_IMAGE_TAG $HDDL_RESOURCE_FOLDER
 
 docker image ls

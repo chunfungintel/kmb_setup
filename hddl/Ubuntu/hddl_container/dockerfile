@@ -20,8 +20,9 @@ COPY mediasdk /opt/intel/mediasdk
 
 ENV GST_PLUGIN_SCANNER=/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner
 
-RUN usermod -aG video root
-RUN usermod -aG users root
+#RUN usermod -aG video root
+#RUN usermod -aG users root
+RUN ln -s busybox vi
 
 COPY run_hddl_service.sh /run_hddl_service.sh
 COPY run_test.sh /run_test.sh
