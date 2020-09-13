@@ -15,6 +15,11 @@ spec:
       - name: fullpipex6
         image: gar-registry.caas.intel.com/virtiot/hddlunite_connect:20200908-2044
         command: [ "/run_test.sh"]
+        env:
+        - name: TEST_NAME
+          value: "TEST_02"
+        - name: HVA_TEST_TIMEOUT
+          value: "30"
         resources:
           limits:
             kmb.intel.com/device: 6
