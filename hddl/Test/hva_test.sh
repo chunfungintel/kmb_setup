@@ -18,7 +18,8 @@ KPI_START=5
 #sudo chmod 666 /dev/xlnk ; \
 
 docker run -it \
--v /var/tmp:/var/tmp \
+-v /tmp:/var/tmp \
+--env HVA_TEST_TIMEOUT=30 \
 --device=/dev/xlnk:/dev/xlnk \
 --device=/dev/dri/card0:/dev/dri/card0 \
 --env KPI_START=$KPI_START \
