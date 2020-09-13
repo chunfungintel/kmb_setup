@@ -17,8 +17,7 @@ KPI_START=5
 
 #sudo chmod 666 /dev/xlnk ;\
 docker run -d \
--v /tmp:/tmp \
--v /var/tmp:/var/tmp \
+-v /tmp:/var/tmp \
 --device=/dev/xlnk:/dev/xlnk \
 --env KPI_START=$KPI_START \
 $HDDL_CONTAINER /run_hddl_service.sh

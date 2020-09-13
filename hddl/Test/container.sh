@@ -26,8 +26,7 @@ do
     #echo $TIME
 
     docker run -d \
-        -v /tmp:/tmp \
-        -v /var/tmp:/var/tmp \
+        -v /tmp:/var/tmp \
         --device=/dev/xlnk:/dev/xlnk \
         --env KPI_START=$TIME \
 	$HDDL_CONTAINER /run_kpi.sh
