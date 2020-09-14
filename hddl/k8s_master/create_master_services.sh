@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-kubectl create -f hddl.yaml; \
+kubectl create -f ./services/hddl.yaml; \
 sleep 5; \
-kubectl create -f devplugin.yaml; \
+kubectl create -f ./services/devplugin.yaml; \
 
