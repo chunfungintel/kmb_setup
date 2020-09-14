@@ -41,24 +41,48 @@
 
 
 ## HDDLUnite Centos
-### Centos main and worker node:
+### Centos K8S main and worker node
 1. Docker installation: ./hddl/Centos/01_docker.sh
 2. Kubernetes installation: ./hddl/Centos/02_kubernetes.sh
 3. Intel proxy and certificate setup: ./hddl/setup_intel_ia_centos.sh
 4. Module installation: xlink (https://wiki.ith.intel.com/pages/viewpage.action?pageId=1476473044#Setupvaapi-bypasswithhddlunite-1.PrepareXLinkIAkerenelmodule)
 5. Keem Bay device auto connect on boot: https://wiki.ith.intel.com/pages/viewpage.action?pageId=1622041497#KMBUTTMilestone#ER_WW312020_MSFT-NVRBypass-5.1[Optional]Howtoenablehddl_device_serviceautoboot
 
-
-
 Main node:
 1. Start k8s service: ./hddl/k8s_master/setup_k8s_master.sh
 2. Start resource services: ./hddl/k8s_master/create_master_services.sh
-
 
 Worker node:
 1. Run ./hddl/master/join_k8s_command.sh in MASTER NODE.
 2. Run the command created in step 1 at WORKER NODE.
 
+Launch jobs:
+1. KPI jobs: kubectl create -f ./hddl/k8s_master/demo-jobs/fullpipe-kpix6.yaml
+2. HVA jobs: kubectl create -f ./hddl/k8s_master/demo-jobs/fullpipex6.yaml
+
+### Centos Containerization Test
+1. Export environment:
+    ```
+    export HDDL_IMAGE_NAME=gar-registry.caas.intel.com/virtiot/hddlunite_connect
+    export HDDL_IMAGE_TAG=20200908-2044
+    ```
+2. Start HDDL scheduler: ./hddl/Docker_test/hddl_service_start.sh
+3. Run 6 parallel KPI testing: ./hddl/Docker_test/container.sh
+4. Run HVA testing: ./hddl/Docker_test/hva_test.sh
 
 
+### IoT Edge Deployment
+Quick start guide: https://docs.microsoft.com/en-us/azure/iot-edge/quickstart-linux
+
+1. IoT Edge install: https://docs.microsoft.com/en-us/azure/iot-edge/how-to-install-iot-edge-linux or ./hddl/iotedge/01_iotedge_install.sh
+2. IoT Edge setup for Intel: ./hddl/iotedge/02_iotedge_setup.sh
+4. Create IoT hub: https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal#create-an-iot-hub Note: Until 1-4 only to create a basic creation.
+3. Create IoT Edge device and obtain primary key: https://docs.microsoft.com/en-us/azure/iot-edge/how-to-register-device#create-an-iot-edge-device-in-the-azure-portal
+4. Add primary key into /etc/iotedge/config.yaml: https://docs.microsoft.com/en-us/azure/iot-edge/how-to-install-iot-edge-linux#option-1-manual-provisioning. Then restart iotedge: sudo systemctl restart iotedge
+5. IoT Edge module creation for HDDL scheduler: https://docs.microsoft.com/en-us/azure/iot-edge/how-to-deploy-modules-portal#select-device-and-add-modules. 
+    Image URL: gar-registry.caas.intel.com/virtiot/hddlunite_connect:20200908-2044
+    Container Create Options: <hddl_module_creation>
+6. Repeat step 5 for creation of workload module(kpi testing).
+    Image URL: gar-registry.caas.intel.com/virtiot/hddlunite_connect:20200908-2044
+    Container Create Options: <sample_module_creation>
 

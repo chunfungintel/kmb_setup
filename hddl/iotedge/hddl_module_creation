@@ -1,0 +1,31 @@
+{
+  "Entrypoint": ["/bin/bash", "/run_hddl_service.sh"],
+  "HostConfig": {
+    "Binds": [
+      "/tmp:/var/tmp"
+    ],
+    "Devices": [
+      {
+        "PathOnHost": "/dev/xlnk",
+        "PathInContainer": "/dev/xlnk",
+        "CgroupPermissions": "rwm"
+      },
+      {
+        "PathOnHost": "/dev/dri/card0",
+        "PathInContainer": "/dev/dri/card0",
+        "CgroupPermissions": "rwm"
+     }
+    ]
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "/tmp",
+      "Destination": "/var/tmp",
+      "Mode": "",
+      "RW": true,
+      "Propagation": "rslave"
+    }
+  ]
+}
+
