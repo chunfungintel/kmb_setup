@@ -1,8 +1,7 @@
 #!/bin/bash
 
-rm -rf /etc/cni /etc/kubernetes /var/lib/dockershim /var/lib/etcd /var/lib/kubelet /var/run/kubernetes ~/.kube/*
-
 printf "Y\n" | kubeadm reset
+rm -rf /etc/cni /etc/kubernetes /var/lib/dockershim /var/lib/etcd /var/lib/kubelet /var/run/kubernetes ~/.kube/*
 
 modprobe br_netfilter
 
@@ -13,7 +12,23 @@ EOF
 
 kubeadm config images pull
 
-kubeadm init 	--pod-network-cidr=10.244.0.0/16
+cat << EOF > kubeadm.yaml
+apiVersion: kubeadm.k8s.io/v1beta1
+kind: ClusterConfiguration
+networking:
+  podSubnet: 10.244.0.0/16
+scheduler:
+  extraArgs:
+    policy-config-file: /etc/edge-ai/scheduler/sched-policy-k8s.json
+  extraVolumes:
+  - name: kubeconfig-ros
+    hostPath: "/etc/edge-ai/scheduler/sched-policy-k8s.json"
+    mountPath: "/etc/edge-ai/scheduler/sched-policy-k8s.json"
+    readOnly: true
+    pathType: FileOrCreate
+EOF
+
+kubeadm init 	--config=kubeadm.yaml --v=5
 
 
 echo "resolvConf: /etc/resolv_kube.conf" >> /var/lib/kubelet/config.yaml
