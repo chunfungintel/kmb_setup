@@ -1,3 +1,4 @@
+
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -17,9 +18,20 @@ spec:
           name: kmb-full
           image: gar-registry.caas.intel.com/virtiot/kmb_standalone:latest
           securityContext:
+            privileged: true
             capabilities:
               add: ["SYS_RAWIO"]
           command: [ "/bin/bash", "/data/launch_gst_media.sh"]
           resources:
             limits:
               kmb.intel.com/codec: 1
+          volumeMounts:
+          - name: kmb-vol
+            mountPath: /data
+      volumes:
+        - name: kmb-vol
+          hostPath:
+            path: /data
+            type: Directory
+
+

@@ -18,6 +18,7 @@ spec:
           name: kmb-full
           image: gar-registry.caas.intel.com/virtiot/kmb_standalone:latest
           securityContext:
+            privileged: true
             capabilities:
               add: ["SYS_RAWIO"]
           command: [ "/bin/bash", "/data/launch_gst_full.sh"]
@@ -25,3 +26,12 @@ spec:
             limits:
               kmb.intel.com/vpu: 1
               kmb.intel.com/codec: 1
+          volumeMounts:
+          - name: kmb-vol
+            mountPath: /data
+      volumes:
+        - name: kmb-vol
+          hostPath:
+            path: /data
+            type: Directory
+
