@@ -14,22 +14,18 @@ HDDL_CONTAINER=$HDDL_IMAGE_NAME:$HDDL_IMAGE_TAG
 NAME=TEST
 KPI_START=1
 NUM_CONTAINER=6
-
+export KPI_CONTAINER_ID_LIST=
 #sudo chmod 666 /dev/xlnk
 
 for i in $( seq 1 $NUM_CONTAINER )
 do
-    num=$(printf "%02d" $i)
-    CONTAINER_NAME=$NAME-$num
-    echo $CONTAINER_NAME
-    TIME=$((KPI_START*(NUM_CONTAINER -i)))
-    #echo $TIME
-
-    docker run -d \
+    container_id=$(docker run -d \
         -v /tmp:/var/tmp \
         --device=/dev/xlnk:/dev/xlnk \
         --env KPI_START=$TIME \
-	$HDDL_CONTAINER /run_kpi.sh
+	$HDDL_CONTAINER /run_kpi.sh)
+    echo "TEST $i: $container_id"
+    KPI_CONTAINER_ID_LIST="$KPI_CONTAINER_ID_LIST $container_id"
 done
 
 
