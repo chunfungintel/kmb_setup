@@ -24,8 +24,7 @@ do
     --device=/dev/dri/renderD129:/dev/dri/renderD129 \
     --device=/dev/mem:/dev/mem \
     --cap-add SYS_RAWIO \
-    $KMB_CONTAINER \
-    /data/launch_gst_media.sh)
+    $KMB_CONTAINER bash /data/launch_gst_media.sh)
     echo "TEST $i: $container_id"
     MEDIA_CONTAINER_ID_LIST="$MEDIA_CONTAINER_ID_LIST $container_id"
 done
