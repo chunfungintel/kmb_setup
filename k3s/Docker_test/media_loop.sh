@@ -23,10 +23,23 @@ do
     echo "Test $i"
     . ./media.sh
     echo "Containers List: $MEDIA_CONTAINER_ID_LIST"
-
+ 
+    DONE=0
     # wait for test finish
-    while [ $(docker ps --format '{{.ID}}' | wc -l) -ne $NUM_PS ]
+    while [[ "$DONE" == "0" ]]
     do
+        DONE=1
+        for CONTAINER in $MEDIA_CONTAINER_ID_LIST;
+        do
+            if [ "$( docker container inspect -f '{{.State.Status}}' $CONTAINER )" == "running" ]; then
+                DONE=0
+            fi
+        done
+
+        if [[ "$i" == "1" ]]; then
+            break
+        fi
+
         echo "Polling"
         sleep 10
     done
