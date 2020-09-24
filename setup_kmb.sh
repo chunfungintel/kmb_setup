@@ -20,7 +20,7 @@ cp -r ./resources/avc_uncontained_woBframe /data
 #cp -r edge-ai /etc
 
 ./setup_intel.sh $NODE
-./setup_vpu.sh
+#./setup_vpu.sh
 
 echo 'Please reboot your system for changes to take effect'
 
