@@ -18,7 +18,7 @@ for i in $( seq 1 $NUM_CONTAINER )
 do
     container_id=$(docker run -d \
     -v /data:/data \
-    --env VIDEO_NAME=$i \
+    --env VIDEO_NAME=$RANDOM \
     --device=/dev/xlnk:/dev/xlnk \
     --device=/dev/vpusmm0:/dev/vpusmm0 \
     --device=/dev/dri/renderD129:/dev/dri/renderD129 \
