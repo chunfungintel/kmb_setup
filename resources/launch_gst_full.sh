@@ -28,7 +28,7 @@ ie-config=VPU_KMB_PREPROCESSING_SHAVES=4,VPU_KMB_PREPROCESSING_LPI=8 \
 name=detect reclassify-interval=100 ! queue ! gvafpscounter interval=20 \
 ! fakesink async=false
 
-sleep 60
+sleep 10
 
 oldnum=`cut -d ',' -f2 /data/kmb/vpu`
 newnum=`expr $oldnum - 100`
