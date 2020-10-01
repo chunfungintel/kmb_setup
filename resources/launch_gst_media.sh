@@ -11,7 +11,7 @@ export OUTPUT_MP4="test_$VIDEO_NAME.avi"
 cd /data/avc_uncontained_woBframe;
 
 #gst-launch-1.0 -v filesrc location="/data/cat1080_frm5.h264" num-buffers=10 \
-gst-launch-1.0 multifilesrc location="%02d.h264" index=1 stop-index=20 \
+gst-launch-1.0 multifilesrc location="%02d.h264" index=11 stop-index=20 \
 ! h264parse ! vaapih264dec \
 ! "video/x-raw(memory:DMABuf)" ! videoconvert \
 ! vaapih264enc ! avimux ! filesink location=$OUTPUT_MP4
