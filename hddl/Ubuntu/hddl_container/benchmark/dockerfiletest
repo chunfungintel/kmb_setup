@@ -1,0 +1,21 @@
+FROM ubuntu:18.04
+
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt update -y
+
+ENV BYPASS_DIR=/opt/hddl_bypass
+
+ENV HVASAMPLE_PATH=${BYPASS_DIR}/hvasample
+ENV HDDLUNITE_PATH=${BYPASS_DIR}/hddlunite
+ENV HVASAMPLE_OPENVINO_PATH=${HVASAMPLE_PATH}/openvino
+
+ARG HOST_PACKAGE_NAME
+
+WORKDIR ${BYPASS_DIR}
+ADD ${HOST_PACKAGE_NAME} ${BYPASS_DIR}
+#RUN tar -xvf ${BYPASS_DIR}/${HOST_PACKAGE_NAME}
+
+# XLink library location is missing at the moment in env_setup.sh
+ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HDDLUNITE_PATH}/thirdparty/XLink/lib
+
+
