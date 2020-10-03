@@ -3,6 +3,10 @@ FROM ubuntu:18.04
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt update -y
 
+RUN apt install -y gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-plugins-bad libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libudev-dev qtbase5-dev libboost-program-options-dev libboost-thread-dev libboost-filesystem-dev opencl-c-headers libgstreamer-plugins-bad1.0-dev libva-dev libxrandr-dev autoconf libdrm-dev libx11-dev cmake git wget bison flex libtool pkg-config libxext-dev bash busybox
+
+################################################################################
+
 ENV BYPASS_DIR=/opt/hddl_bypass
 
 ENV HVASAMPLE_PATH=${BYPASS_DIR}/hvasample
@@ -17,5 +21,22 @@ ADD ${HOST_PACKAGE_NAME} ${BYPASS_DIR}
 
 # XLink library location is missing at the moment in env_setup.sh
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HDDLUNITE_PATH}/thirdparty/XLink/lib
+
+################################################################################
+
+# libformat_reader.so is not in the release archives
+# COPY lib/libformat_reader.so /usr/lib/
+
+ENV OPENVINO_PATH=/opt/openvino
+
+ARG OPENVINO_PACKAGE_NAME
+
+ADD ${OPENVINO_PACKAGE_NAME} ${OPENVINO_PATH}
+#WORKDIR ${OPENVINO_PATH}
+#RUN tar -xvf ${OPENVINO_PACKAGE_NAME}
+
+COPY models ${OPENVINO_PATH}/models
+COPY textures /tmp/textures
+
 
 
