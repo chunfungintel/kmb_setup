@@ -9,6 +9,6 @@ fi
 
 cd $OPENVINO_PATH
 source bin/setupvars.sh
-deployment_tools/inference_engine/bin/benchmark_app -m ./models/mobilenet-v2.blob -d VPUX -nireq 4 -niter 3000 -i /tmp/textures
+deployment_tools/inference_engine/bin/benchmark_app -m ./models/mobilenet-v2.blob -d VPUX -nireq 4 -niter 3000 -i /opt/textures
 
 echo "Done"

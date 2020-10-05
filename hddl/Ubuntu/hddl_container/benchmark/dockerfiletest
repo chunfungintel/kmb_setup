@@ -54,7 +54,7 @@ ADD ${OPENVINO_PACKAGE_NAME} ${OPENVINO_PATH}
 #RUN tar -xvf ${OPENVINO_PACKAGE_NAME}
 
 COPY models ${OPENVINO_PATH}/models
-COPY textures /tmp/textures
+COPY textures /opt/textures
 COPY run_kpi.sh /run_kpi.sh
 COPY run_forever.sh /run_forever.sh
 
