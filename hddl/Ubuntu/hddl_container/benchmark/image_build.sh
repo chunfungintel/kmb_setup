@@ -1,25 +1,25 @@
 #!/bin/bash
 
-export BENCHMARK_IMAGE_NAME=benchmark_kpi
-export BENCHMARK_IMAGE_TAG=20201002-0010
-export BENCHMARK_RESOURCE_FOLDER=/home/chunfung/CF/Benchmark_WS
-export HOST_PACKAGE_LINK=https://ubit-artifactory-sh.intel.com/artifactory/sed-dgn-local/yocto/builds/2020/Mainline_BKC/20201002-0010
-export HOST_PACKAGE_NAME=bypass_host_hddlunite_hvasample_demo-6b3c42b.tgz
-export OPENVINO_PACKAGE_NAME=l_openvino_toolkit_private_ubuntu18_kmb_x86_p_2020.3.0-3362-dc895cd9dcf-releases_2020_kmb_pv1.tar.gz
+export HDDL_IMAGE_NAME=hddlunite_connect
+export HDDL_IMAGE_TAG=20201003-0611
+export HDDL_RESOURCE_FOLDER=/home/chunfung/CF/Benchmark_WS
+export HOST_PACKAGE_LINK=https://ubit-artifactory-sh.intel.com/artifactory/sed-dgn-local/yocto/builds/2020/PREINT/20201003-0611
+export HOST_PACKAGE_NAME=bypass_host_hddlunite_hvasample_demo-2327426.tgz
+export OPENVINO_PACKAGE_NAME=l_openvino_toolkit_private_ubuntu18_kmb_x86_p_2021.1.0-1237-3cabe58ed07-releases_2020_kmb_pv2.tar.gz
 
 
-if [ -z "$BENCHMARK_IMAGE_NAME" ]; then
-    echo "Need to set BENCHMARK_IMAGE_NAME "
+if [ -z "$HDDL_IMAGE_NAME" ]; then
+    echo "Need to set HDDL_IMAGE_NAME "
     exit
 fi
 
-if [ -z "$BENCHMARK_IMAGE_TAG" ]; then
-    echo "Need to set BENCHMARK_IMAGE_TAG "
+if [ -z "$HDDL_IMAGE_TAG" ]; then
+    echo "Need to set HDDL_IMAGE_TAG "
     exit
 fi
 
-if [ -z "$BENCHMARK_RESOURCE_FOLDER" ]; then
-    echo "Need to set BENCHMARK_RESOURCE_FOLDER "
+if [ -z "$HDDL_RESOURCE_FOLDER" ]; then
+    echo "Need to set HDDL_RESOURCE_FOLDER "
     exit
 fi
 
@@ -39,19 +39,20 @@ if [ -z "$OPENVINO_PACKAGE_NAME" ]; then
 fi
 
 #TODO
-rm -rf $BENCHMARK_RESOURCE_FOLDER/$HOST_PACKAGE_NAME
-wget $HOST_PACKAGE_LINK/host_packages/$HOST_PACKAGE_NAME -P $BENCHMARK_RESOURCE_FOLDER
+rm -rf $HDDL_RESOURCE_FOLDER/$HOST_PACKAGE_NAME
+wget $HOST_PACKAGE_LINK/host_packages/$HOST_PACKAGE_NAME -P $HDDL_RESOURCE_FOLDER
 
-rm -rf $BENCHMARK_RESOURCE_FOLDER/$OPENVINO_PACKAGE_NAME
-wget $HOST_PACKAGE_LINK/$OPENVINO_PACKAGE_NAME -P $BENCHMARK_RESOURCE_FOLDER
+rm -rf $HDDL_RESOURCE_FOLDER/$OPENVINO_PACKAGE_NAME
+wget $HOST_PACKAGE_LINK/$OPENVINO_PACKAGE_NAME -P $HDDL_RESOURCE_FOLDER
 
-
+cp ./scripts/run*.sh $HDDL_RESOURCE_FOLDER
+cp ./scripts/config.json $HDDL_RESOURCE_FOLDER
 
 docker build \
 --no-cache=true \
 -f ./dockerfiletest \
 --build-arg HOST_PACKAGE_NAME \
 --build-arg OPENVINO_PACKAGE_NAME \
--t $BENCHMARK_IMAGE_NAME:$BENCHMARK_IMAGE_TAG $BENCHMARK_RESOURCE_FOLDER
+-t $HDDL_IMAGE_NAME:$HDDL_IMAGE_TAG $HDDL_RESOURCE_FOLDER
 
 docker image ls

@@ -6,6 +6,7 @@ RUN apt update -y
 RUN apt install -y gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-plugins-bad libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libudev-dev qtbase5-dev libboost-program-options-dev libboost-thread-dev libboost-filesystem-dev opencl-c-headers libgstreamer-plugins-bad1.0-dev libva-dev libxrandr-dev autoconf libdrm-dev libx11-dev cmake git wget bison flex libtool pkg-config libxext-dev bash busybox
 
 ################################################################################
+# hddlunite
 
 ENV BYPASS_DIR=/opt/hddl_bypass
 
@@ -22,7 +23,17 @@ ADD ${HOST_PACKAGE_NAME} ${BYPASS_DIR}
 # XLink library location is missing at the moment in env_setup.sh
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HDDLUNITE_PATH}/thirdparty/XLink/lib
 
+COPY run_hddl_service.sh /run_hddl_service.sh
 ################################################################################
+# hvasample
+ENV HVA_TEST_TIMEOUT=20
+
+COPY config.json ${HVASAMPLE}/config.json
+COPY test /tmp/test
+COPY run_test.sh /run_test.sh
+
+################################################################################
+# openvino KPI
 
 # libformat_reader.so is not in the release archives
 # COPY lib/libformat_reader.so /usr/lib/
@@ -37,6 +48,8 @@ ADD ${OPENVINO_PACKAGE_NAME} ${OPENVINO_PATH}
 
 COPY models ${OPENVINO_PATH}/models
 COPY textures /tmp/textures
+COPY run_kpi.sh /run_kpi.sh
+COPY run_forever.sh /run_forever.sh
 
 
 

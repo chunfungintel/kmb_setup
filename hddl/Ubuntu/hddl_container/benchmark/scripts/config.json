@@ -1,0 +1,25 @@
+{
+  "Detection": {
+    "Model": "/tmp/test/yolo-v2-tiny-ava-0001.blob",
+    "InferReqNumber": "4",
+    "Threshold": "0.61"
+  },
+  "Classification": {
+    "Model": "/tmp/test/resnet-50-pytorch.blob",
+    "InferReqNumber": "4"
+  },
+  "Decode": [
+    {
+      "Video": "/tmp/test/11.h264",
+      "Codec": "h264"
+    }
+  ],
+  "GUI": {
+    "Socket": "/tmp/gstreamer_ipc_second.sock"
+  },
+  "FRC": {
+    "DropEveryXFrame": 2,
+    "DropXFrame": 1
+  }
+}
+
