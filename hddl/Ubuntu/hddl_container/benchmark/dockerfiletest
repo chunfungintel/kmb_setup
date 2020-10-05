@@ -25,6 +25,7 @@ ARG HOST_PACKAGE_NAME
 
 WORKDIR ${BYPASS_DIR}
 ADD ${HOST_PACKAGE_NAME} ${BYPASS_DIR}
+RUN chown -R root:root ${BYPASS_DIR}
 #RUN tar -xvf ${BYPASS_DIR}/${HOST_PACKAGE_NAME}
 
 # XLink library location is missing at the moment in env_setup.sh
@@ -50,6 +51,7 @@ ENV OPENVINO_PATH=/opt/openvino
 ARG OPENVINO_PACKAGE_NAME
 
 ADD ${OPENVINO_PACKAGE_NAME} ${OPENVINO_PATH}
+RUN chown -R root:root ${OPENVINO_PATH}
 #WORKDIR ${OPENVINO_PATH}
 #RUN tar -xvf ${OPENVINO_PACKAGE_NAME}
 
