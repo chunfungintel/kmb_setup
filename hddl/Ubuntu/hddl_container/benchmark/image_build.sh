@@ -45,8 +45,7 @@ wget $HOST_PACKAGE_LINK/host_packages/$HOST_PACKAGE_NAME -P $HDDL_RESOURCE_FOLDE
 rm -rf $HDDL_RESOURCE_FOLDER/$OPENVINO_PACKAGE_NAME
 wget $HOST_PACKAGE_LINK/$OPENVINO_PACKAGE_NAME -P $HDDL_RESOURCE_FOLDER
 
-cp ./scripts/run*.sh $HDDL_RESOURCE_FOLDER
-cp ./scripts/config.json $HDDL_RESOURCE_FOLDER
+cp -r ./scripts/* $HDDL_RESOURCE_FOLDER
 
 docker build \
 --no-cache=true \

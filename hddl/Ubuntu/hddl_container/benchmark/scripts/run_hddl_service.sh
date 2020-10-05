@@ -13,7 +13,7 @@ rm -rf /var/tmp/hddlunite_service.sock
 
 sleep 10
 cd $HDDLUNITE_PATH
-source ./prepare_run.sh
+source ./env_host.sh
 SetHDDLMode -m bypass
 sleep infinity
 

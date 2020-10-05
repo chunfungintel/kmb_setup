@@ -6,6 +6,13 @@ RUN apt update -y
 RUN apt install -y gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-plugins-bad libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libudev-dev qtbase5-dev libboost-program-options-dev libboost-thread-dev libboost-filesystem-dev opencl-c-headers libgstreamer-plugins-bad1.0-dev libva-dev libxrandr-dev autoconf libdrm-dev libx11-dev cmake git wget bison flex libtool pkg-config libxext-dev bash busybox
 
 ################################################################################
+
+ENV HDDL_RESET=/opt/hddl_reset
+COPY hddl_reset ${HDDL_RESET}
+WORKDIR ${HDDL_RESET}
+RUN make && make install
+
+################################################################################
 # hddlunite
 
 ENV BYPASS_DIR=/opt/hddl_bypass
@@ -28,8 +35,8 @@ COPY run_hddl_service.sh /run_hddl_service.sh
 # hvasample
 ENV HVA_TEST_TIMEOUT=20
 
-COPY config.json ${HVASAMPLE}/config.json
-COPY test /tmp/test
+COPY config.json ${HVASAMPLE_PATH}/config.json
+COPY test /opt/test
 COPY run_test.sh /run_test.sh
 
 ################################################################################
