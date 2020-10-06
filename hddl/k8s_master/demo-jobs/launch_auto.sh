@@ -9,6 +9,6 @@ export HDDL_TEST_FILE=/run_kpi.sh
 export HDDL_KMB_COUNT=3
 '
 
-RANDOM_STR=`head /dev/urandom | tr -dc a-z0-9 | head -c10`
-
+export RANDOM_STR=`head /dev/urandom | tr -dc a-z0-9 | head -c10`
+echo $RANDOM_STR
 envsubst < deployment.yaml | kubectl apply -f -
