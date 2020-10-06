@@ -34,7 +34,7 @@ ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HDDLUNITE_PATH}/thirdparty/XLink/lib
 COPY run_hddl_service.sh /run_hddl_service.sh
 ################################################################################
 # hvasample
-ENV HVA_TEST_TIMEOUT=20
+ENV HVA_TEST_TIMEOUT=30
 
 COPY config.json ${HVASAMPLE_PATH}/config.json
 COPY test /opt/test
