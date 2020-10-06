@@ -25,3 +25,12 @@ spec:
             limits:
               kmb.intel.com/vpu: 1
               kmb.intel.com/codec: 1
+          volumeMounts:
+          - name: kmb-vol
+            mountPath: /data
+      volumes:
+        - name: kmb-vol
+          hostPath:
+            path: /data
+            type: Directory
+
