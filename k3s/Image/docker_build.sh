@@ -28,6 +28,7 @@ mkdir -p ./$KMB_ROOT_FS_MOUNT
 sudo mount -t auto $KMB_ROOTFS $KMB_ROOT_FS_MOUNT
 
 cd $KMB_ROOT_FS_MOUNT
+sudo rm -rf ./lost+found
 cat <<EOF | sudo tee dockerfile
 FROM scratch
 
