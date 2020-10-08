@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kmb-$JOB_NAME-$RANDOM_STR-1
+  labels:
+    jobgroup: intelkmb-demo
+spec:
+  template:
+    metadata:
+      labels:
+        jobgroup: intelkmb-demo
+        vpu.intel.com/vpu-usage: $VPU_USAGE
+        vpu.intel.com/codec-usage: $CODEC_USAGE
+    spec:
+      restartPolicy: Never
+      containers:
+        -
+          name: kmb-full
+          image: $KMB_IMAGE_NAME
+          securityContext:
+            privileged: true
+            capabilities:
+              add: ["SYS_RAWIO"]
+          command: [ "/bin/bash", "$KMB_JOB_FILE"]
+          resources:
+            limits:
+              kmb.intel.com/vpu: $KMB_VPU_COUNT
+              kmb.intel.com/codec: $KMB_CODEC_COUNT
+          volumeMounts:
+          - name: kmb-vol
+            mountPath: /data
+      volumes:
+        - name: kmb-vol
+          hostPath:
+            path: /data
+            type: Directory
+
