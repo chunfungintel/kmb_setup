@@ -26,12 +26,4 @@ spec:
             limits:
               kmb.intel.com/vpu: $KMB_VPU_COUNT
               kmb.intel.com/codec: $KMB_CODEC_COUNT
-          volumeMounts:
-          - name: kmb-vol
-            mountPath: /data
-      volumes:
-        - name: kmb-vol
-          hostPath:
-            path: /data
-            type: Directory
 
