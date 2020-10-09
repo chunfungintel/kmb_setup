@@ -13,5 +13,5 @@ cp resources/config.json $HDDL_RESOURCE_FOLDER/host_install_dir/hvasample/
 #mv $HDDL_RESOURCE_FOLDER/host_install_dir/hvasample/FullPipeGUITestMulti $HDDL_RESOURCE_FOLDER/host_install_dir/hvasample/FullPipeGUITestMulti_original
 #cp resources/FullPipeGUITestMulti $HDDL_RESOURCE_FOLDER/host_install_dir/hvasample/
 
-cp ./run_*.sh $HDDL_RESOURCE_FOLDER
+cp ./resources/run_*.sh $HDDL_RESOURCE_FOLDER
 
