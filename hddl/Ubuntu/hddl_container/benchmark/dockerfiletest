@@ -8,9 +8,11 @@ RUN apt install -y gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer
 ################################################################################
 
 ENV HDDL_RESET=/opt/hddl_reset
-COPY hddl_reset ${HDDL_RESET}
+ARG DEB_PACKAGE_NAME
+
 WORKDIR ${HDDL_RESET}
-RUN make && make install
+COPY ${DEB_PACKAGE_NAME} ${HDDL_RESET}
+RUN ar vx ${DEB_PACKAGE_NAME} && tar -xvf data.tar.xz && cd usr/src/kmb-hddl-driver-0.1.0/hddl_reset && make && make install
 
 ################################################################################
 # hddlunite
