@@ -58,7 +58,7 @@ cp -r ./scripts/* $HDDL_RESOURCE_FOLDER
 cp ../../../../resources/release_kmb/* $HDDL_RESOURCE_FOLDER/test
 
 docker build \
---no-cache=true \
+--no-cache=false \
 -f ./dockerfiletest \
 --build-arg HOST_PACKAGE_NAME \
 --build-arg OPENVINO_PACKAGE_NAME \
