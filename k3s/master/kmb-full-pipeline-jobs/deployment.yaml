@@ -17,6 +17,7 @@ spec:
         -
           name: kmb-full
           image: $KMB_IMAGE_NAME
+          imagePullPolicy : IfNotPresent
           securityContext:
             privileged: true
             capabilities:

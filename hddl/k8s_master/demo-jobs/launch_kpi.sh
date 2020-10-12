@@ -19,12 +19,12 @@ if [ -z "$HDDL_IMAGE_TAG" ]; then
     exit
 fi
 
-export HDDL_TEST_FILE=/run_test.sh
+export HDDL_TEST_FILE=/run_kpi.sh
 if [ -z "$HDDL_KMB_COUNT" ]; then
     export HDDL_KMB_COUNT=3
 fi
 if [ -z "$JOB_TYPE" ]; then
-    export JOB_TYPE=any
+    export JOB_TYPE=kpi
 fi
 
 export RANDOM_STR=`head /dev/urandom | tr -dc a-z0-9 | head -c10`

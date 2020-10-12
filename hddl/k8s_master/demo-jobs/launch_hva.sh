@@ -24,7 +24,7 @@ if [ -z "$HDDL_KMB_COUNT" ]; then
     export HDDL_KMB_COUNT=3
 fi
 if [ -z "$JOB_TYPE" ]; then
-    export JOB_TYPE=any
+    export JOB_TYPE=hva
 fi
 
 export RANDOM_STR=`head /dev/urandom | tr -dc a-z0-9 | head -c10`

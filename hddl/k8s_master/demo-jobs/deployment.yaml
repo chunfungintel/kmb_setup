@@ -1,19 +1,20 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: fullpipe-$RANDOM_STR-01
+  name: $JOB_TYPE-$RANDOM_STR-01
   labels:
-    jobgroup: fullpipe
+    jobgroup: hddl_pipe
 spec:
   template:
     metadata:
       labels:
-        jobgroup: fullpipe
+        jobgroup: hddl_pipe
     spec:
       restartPolicy: Never
       containers:
       - name: fullpipe
         image: $HDDL_IMAGE_NAME:$HDDL_IMAGE_TAG
+        imagePullPolicy : IfNotPresent
         command: [ "$HDDL_TEST_FILE"]
         env:
         - name: TEST_NAME
