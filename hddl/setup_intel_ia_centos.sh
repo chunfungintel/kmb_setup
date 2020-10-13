@@ -38,7 +38,7 @@ do
 done
 
 echo "setup docker proxy"
-systemctl stop docker
+sudo systemctl stop docker
 
 mkdir -p /etc/systemd/system/docker.service.d
 echo "[Service]
@@ -67,7 +67,7 @@ echo "{
 }" > ~/.docker/config.json
 
 # Docker DNS inside Intel
-cat <<EOF > /etc/docker/daemon.json
+cat <<EOF | sudo tee /etc/docker/daemon.json
 {
     "dns": ["10.248.2.1"]
 }
