@@ -20,7 +20,7 @@ spec:
         - name: TEST_NAME
           value: "TEST_01"
         - name: HVA_TEST_TIMEOUT
-          value: "30"
+          value: "60"
         resources:
           limits:
             kmb.intel.com/device: $HDDL_KMB_COUNT
