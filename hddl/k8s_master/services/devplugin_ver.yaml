@@ -30,7 +30,7 @@ spec:
           name: socket
       containers:
       - name: devplugin
-        image: gar-registry.caas.intel.com/virtiot/hddl_dev_plugin:1.1
+        image: $DEV_PLUGIN_IMAGE_NAME:$DEV_PLUGIN_IMAGE_TAG
         securityContext:
           privileged: true
         command: [ "/hddl_plugin"]
