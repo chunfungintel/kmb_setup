@@ -16,6 +16,7 @@ cp -r ./resources/gst-video-analytics /data
 cp -r ./resources/release_kmb /data
 
 cp -r ./resources/avc_uncontained_woBframe /data
+cp -r ./resources/textures /data
 
 #cp -r edge-ai /etc
 
