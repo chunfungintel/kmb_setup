@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+./version_check.sh
 
 export RANDOM_STR=`head /dev/urandom | tr -dc a-z0-9 | head -c10`
 echo $RANDOM_STR
