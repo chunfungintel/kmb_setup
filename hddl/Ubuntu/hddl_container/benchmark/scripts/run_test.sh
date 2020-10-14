@@ -11,5 +11,6 @@ else
     timeout $HVA_TEST_TIMEOUT\s ./FullPipeGUITestMulti 1
 fi
 
+sleep 10
 echo "Done"
 
