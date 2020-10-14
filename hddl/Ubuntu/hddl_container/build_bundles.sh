@@ -28,3 +28,11 @@ export DEV_PLUGIN_RESOURCE_FOLDER=$BUILD_FOLDER
 pushd $DEV_PLUGIN_FOLDER
 ./image_build.sh
 popd
+
+### Docker push ###
+export IMAGE_NAME="$HDDL_IMAGE_NAME $DEV_PLUGIN_IMAGE_NAME"
+export IMAGE_TAG=$BUILD_TAG
+
+pushd $PWD/docker_tools
+./docker_push_all.sh
+popd
