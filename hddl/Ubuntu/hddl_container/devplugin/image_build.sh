@@ -15,9 +15,10 @@ if [ -z "$DEV_PLUGIN_RESOURCE_FOLDER" ]; then
     exit
 fi
 
-cd $DEV_PLUGIN_RESOURCE_FOLDER
+pushd $DEV_PLUGIN_RESOURCE_FOLDER
 rm -rf edge-ai-device-plugin
 git clone https://github.com/intel/edge-ai-device-plugin
+popd
 
 docker build \
 --no-cache=false \

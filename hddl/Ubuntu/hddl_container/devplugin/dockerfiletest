@@ -1,5 +1,5 @@
 FROM golang:alpine as builder
-ADD . /go/src
+COPY edge-ai-device-plugin /go/src/edge-ai-device-plugin
 WORKDIR /go/src/edge-ai-device-plugin/hddl/devplugin
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflags "-static"' -o hddl_plugin .
 
