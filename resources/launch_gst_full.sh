@@ -3,7 +3,7 @@ newnum=`expr $oldnum + 100`
 sed -i "s/$oldnum\$/$newnum/g" /data/kmb/vpu
 
 oldnum=`cut -d ',' -f2 /data/kmb/codec`
-newnum=`expr $oldnum + 30`
+newnum=`expr $oldnum + 100`
 sed -i "s/$oldnum\$/$newnum/g" /data/kmb/codec
 
 source /data/source_container.env
@@ -35,5 +35,5 @@ newnum=`expr $oldnum - 100`
 sed -i "s/$oldnum\$/$newnum/g" /data/kmb/vpu
 
 oldnum=`cut -d ',' -f2 /data/kmb/codec`
-newnum=`expr $oldnum - 30`
+newnum=`expr $oldnum - 100`
 sed -i "s/$oldnum\$/$newnum/g" /data/kmb/codec
