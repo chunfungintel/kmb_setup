@@ -8,40 +8,22 @@
 #export OPENVINO_PACKAGE_NAME=l_openvino_toolkit_private_ubuntu18_kmb_x86_p_2021.1.0-1237-3cabe58ed07-releases_2020_kmb_pv2.tar.gz
 #export DEB_PACKAGE_NAME=kmb-hddl-driver-dkms_0.1.0-eabaa_all.deb
 
-if [ -z "$HDDL_IMAGE_NAME" ]; then
-    echo "Need to set HDDL_IMAGE_NAME "
-    exit
-fi
+function CHECK_MANDATORY {
+    LIST_STRING=$1
+    EXIT=0
+    for STRING in $LIST_STRING
+    do
+        if [ -z "${!STRING}" ]; then
+            echo "Need to export ${STRING}="
+            EXIT=1
+        fi
+    done
+    if [ $EXIT -eq 1 ]; then
+        exit
+    fi
+}
 
-if [ -z "$HDDL_IMAGE_TAG" ]; then
-    echo "Need to set HDDL_IMAGE_TAG "
-    exit
-fi
-
-if [ -z "$HDDL_RESOURCE_FOLDER" ]; then
-    echo "Need to set HDDL_RESOURCE_FOLDER "
-    exit
-fi
-
-if [ -z "$HOST_PACKAGE_LINK" ]; then
-    echo "Need to set HOST_PACKAGE_LINK "
-    exit
-fi
-
-if [ -z "$HOST_PACKAGE_NAME" ]; then
-    echo "Need to set HOST_PACKAGE_NAME "
-    exit
-fi
-
-if [ -z "$OPENVINO_PACKAGE_NAME" ]; then
-    echo "Need to set OPENVINO_PACKAGE_NAME "
-    exit
-fi
-
-if [ -z "$DEB_PACKAGE_NAME" ]; then
-    echo "Need to set DEB_PACKAGE_NAME "
-    exit
-fi
+CHECK_MANDATORY HDDL_IMAGE_NAME\ HDDL_IMAGE_TAG\ HDDL_RESOURCE_FOLDER\ HOST_PACKAGE_LINK\ HOST_PACKAGE_NAME\ OPENVINO_PACKAGE_NAME\ DEB_PACKAGE_NAME
 
 mkdir -p $HDDL_RESOURCE_FOLDER
 #TODO
