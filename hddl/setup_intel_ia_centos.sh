@@ -107,4 +107,6 @@ systemctl daemon-reload
 
 systemctl restart docker 
 
+echo "Pending: Auto modprobe xlink and mxlk at boot."
+echo "Pending: Disable swap."
 echo 'Please reboot your system for changes to take effect'
