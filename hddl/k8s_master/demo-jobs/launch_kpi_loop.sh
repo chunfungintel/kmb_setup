@@ -12,7 +12,10 @@ fi
 
 export HDDL_KMB_COUNT=1
 
+export KPI_POD_ID_LIST=
 for i in {1..6}
 do
-./launch_kpi.sh
+. ./launch_kpi.sh
+KPI_POD_ID_LIST="$KPI_POD_ID_LIST $KPI_POD_ID"
 done
+
