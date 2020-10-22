@@ -26,6 +26,10 @@ fi
 if [ -z "$JOB_TYPE" ]; then
     export JOB_TYPE=hva
 fi
+if [ -z "$HVA_TEST_TIMEOUT" ]; then
+    export HVA_TEST_TIMEOUT=60
+fi
+
 
 export RANDOM_STR=`head /dev/urandom | tr -dc a-z0-9 | head -c10`
 echo $RANDOM_STR
