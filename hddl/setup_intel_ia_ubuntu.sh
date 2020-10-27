@@ -38,14 +38,16 @@ do
 done
 
 echo "setup docker proxy"
-systemctl stop docker
+sudo systemctl stop docker
 
-mkdir -p /etc/systemd/system/docker.service.d
-echo "[Service]
-Environment=\"HTTP_PROXY=http://${server}:911/\"
-Environment=\"HTTPS_PROXY=http://${server}:912/\"
-Environment=\"NO_PROXY=localhost,.intel.com\"
-" > /etc/systemd/system/docker.service.d/http-proxy.conf
+sudo mkdir -p /etc/systemd/system/docker.service.d
+
+cat <<EOF | sudo -E tee /etc/systemd/system/docker.service.d/http-proxy.conf
+[Service]
+Environment="HTTP_PROXY=http://${server}:911/"
+Environment="HTTPS_PROXY=http://${server}:912/"
+Environment="NO_PROXY=localhost,.intel.com"
+EOF
 
 mkdir -p ~/.docker
 echo "{
@@ -67,7 +69,7 @@ echo "{
 }" > ~/.docker/config.json
 
 # Docker DNS inside Intel
-cat <<EOF > /etc/docker/daemon.json
+cat << EOF | sudo -E tee  /etc/docker/daemon.json
 {
     "dns": ["10.248.2.1"]
 }
@@ -88,22 +90,22 @@ downloadCerts(){
     exit 1
   fi
   http_proxy='' &&\
-    wget $certsUrl -O $certsFolder/$certsFile
-  unzip -u $certsFolder/$certsFile -d $certsFolder
-  rm $certsFolder/$certsFile
+  sudo -E wget $certsUrl -O $certsFolder/$certsFile
+  sudo -E unzip -u $certsFolder/$certsFile -d $certsFolder
+  sudo -E rm $certsFolder/$certsFile
 }
  
 installCerts(){
-  chmod 644 $certsFolder/*.crt
-  eval "$cmd"
+  sudo chmod 644 $certsFolder/*.crt
+  sudo -sE eval "$cmd"
 }
  
 #mkdir -p /usr/local/share/ca-certificates
 downloadCerts
 installCerts
 
-systemctl daemon-reload
+sudo systemctl daemon-reload
 
-systemctl restart docker 
+sudo systemctl restart docker
 
 echo 'Please reboot your system for changes to take effect'
