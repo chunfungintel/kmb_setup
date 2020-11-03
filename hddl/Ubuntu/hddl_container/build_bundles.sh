@@ -2,8 +2,9 @@
 
 MAKEDIR=$PWD
 
-export BUILD_TAG=20201013-1636
-export BUILD_FOLDER=/home/chunfung/CF/Benchmark_WS5
+export BUILD_TAG=20201030-1350
+export BUILD_FOLDER=/home/chunfung/CF/Benchmark_WS6
+export HOST_PACKAGE_LINK=https://ubit-artifactory-sh.intel.com/artifactory/list/sed-dgn-local/yocto/builds/2020/PREINT/$BUILD_TAG
 
 mkdir -p $BUILD_FOLDER
 
@@ -12,7 +13,6 @@ HDDL_BUILD_FOLDER=$PWD/benchmark
 export HDDL_IMAGE_NAME=hddlunite_connect
 export HDDL_IMAGE_TAG=$BUILD_TAG
 export HDDL_RESOURCE_FOLDER=$BUILD_FOLDER
-export HOST_PACKAGE_LINK=https://ubit-artifactory-sh.intel.com/artifactory/sed-dgn-local/yocto/builds/2020/Mainline_BKC/$BUILD_TAG
 export KMB_LINK=$HOST_PACKAGE_LINK
 
 pushd $HDDL_BUILD_FOLDER
