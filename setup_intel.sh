@@ -116,17 +116,17 @@ export SOCKS_PROXY=http://${server}:1080
 export NO_PROXY=intel.com,.intel.com,10.0.0.0/8,192.168.0.0/16,localhost,.local,127.0.0.0/8,134.134.0.0/16
 
 
-export VPU_FIRMWARE_FILE="vpu_nvr.bin"
-export LD_LIBRARY_PATH=/opt/opencv/lib:/opt/InferenceEngine/lib/aarch64:/usr/lib/gstreamer-1.0:/usr/lib/gst-video-analytics
-export GST_PLUGIN_PATH=/usr/lib/gst-video-analytics
-source /opt/openvino/bin/setupvars.sh
-export GST_DEBUG=2
-export ENABLE_GVA_FEATURES=compact-meta
-export USE_SIPP=1
-export GST_VAAPI_ALL_DRIVERS=1
-export SIPP_FIRST_SHAVE=3
-ulimit -n 65532
-ulimit -c unlimited
+#export VPU_FIRMWARE_FILE="vpu_nvr.bin"
+#export LD_LIBRARY_PATH=/opt/opencv/lib:/opt/InferenceEngine/lib/aarch64:/usr/lib/gstreamer-1.0:/usr/lib/gst-video-analytics
+#export GST_PLUGIN_PATH=/usr/lib/gst-video-analytics
+#source /opt/openvino/bin/setupvars.sh
+#export GST_DEBUG=2
+#export ENABLE_GVA_FEATURES=compact-meta
+#export USE_SIPP=1
+#export GST_VAAPI_ALL_DRIVERS=1
+#export SIPP_FIRST_SHAVE=3
+#ulimit -n 65532
+#ulimit -c unlimited
 
 EOF
 
