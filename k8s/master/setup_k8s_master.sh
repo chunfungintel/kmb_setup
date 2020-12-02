@@ -12,6 +12,23 @@ EOF
 
 kubeadm config images pull
 
+export ENCRYPTION_CONFIG_FOLDER=/etc/kubernetes/pki
+export ENCRYPTION_CONFIG=encryption-provider-config.yaml
+mkdir -p $ENCRYPTION_CONFIG_FOLDER
+cat << EOF > $ENCRYPTION_CONFIG_FOLDER/$ENCRYPTION_CONFIG
+apiVersion: apiserver.config.k8s.io/v1
+kind: EncryptionConfiguration
+resources:
+  - resources:
+    - secrets
+    providers:
+    - aescbc:
+        keys:
+        - name: key1
+          secret: Ti70f5txp+VbKnPqmxsnFg/XJyojXlE2tecQnTYmxS4=
+EOF
+
+
 cat << EOF > kubeadm.yaml
 apiVersion: kubeadm.k8s.io/v1beta1
 kind: ClusterConfiguration
@@ -26,6 +43,9 @@ scheduler:
     mountPath: "/etc/edge-ai/scheduler/sched-policy-k8s.json"
     readOnly: true
     pathType: FileOrCreate
+apiServer:
+  extraArgs:
+    encryption-provider-config: $ENCRYPTION_CONFIG_FOLDER/$ENCRYPTION_CONFIG
 EOF
 
 kubeadm init 	--config=kubeadm.yaml --v=5
