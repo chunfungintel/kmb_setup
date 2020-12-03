@@ -6,20 +6,6 @@ if [ -z "$1" ]; then
 fi
 
 
-select name in A0 B0 ;
-do
-  case "$name" in
-        A0)
-            build=A0
-            break
-          ;;
-        B0)
-            build=B0
-            break
-          ;;
-  esac
-done
-
 if [ -z "$build" ]; then
     echo 'No build selected.'
     exit
