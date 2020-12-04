@@ -6,12 +6,6 @@ if [ -z "$1" ]; then
 fi
 
 
-if [ -z "$build" ]; then
-    echo 'No build selected.'
-    exit
-fi
-
-
 mount -o remount, rw /
 mount -o remount, rw /data
 
