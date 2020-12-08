@@ -1,13 +1,19 @@
+export MAX_SUPPORT_VPU=4
+export MAX_SUPPORT_CODEC=4
+
+export VPU_USED=$((100/$MAX_SUPPORT_VPU))
+export CODEC_USED=$((100/$MAX_SUPPORT_CODEC))
+
 oldnum=`cut -d ',' -f2 /data/kmb/vpu`
-newnum=`expr $oldnum + 100`
+newnum=`expr $oldnum + $VPU_USED`
 sed -i "s/$oldnum\$/$newnum/g" /data/kmb/vpu
 
 oldnum=`cut -d ',' -f2 /data/kmb/codec`
-newnum=`expr $oldnum + 100`
+newnum=`expr $oldnum + $CODEC_USED`
 sed -i "s/$oldnum\$/$newnum/g" /data/kmb/codec
 
-source /data/source_container.env
 
+source /data/source_container.env
 
 GVADETECT_MODEL=/data/release_kmb/yolo-v2-tiny-ava-0001.blob
 GVADETECT_MODEL_PROC=/data/gst-video-analytics/samples/model_proc/yolo-v2-tiny-ava-0001.json
@@ -31,9 +37,10 @@ name=detect reclassify-interval=100 ! queue ! gvafpscounter interval=20 \
 sleep 10
 
 oldnum=`cut -d ',' -f2 /data/kmb/vpu`
-newnum=`expr $oldnum - 100`
+newnum=`expr $oldnum - $VPU_USED`
 sed -i "s/$oldnum\$/$newnum/g" /data/kmb/vpu
 
 oldnum=`cut -d ',' -f2 /data/kmb/codec`
-newnum=`expr $oldnum - 100`
+newnum=`expr $oldnum - $CODEC_USED`
 sed -i "s/$oldnum\$/$newnum/g" /data/kmb/codec
+

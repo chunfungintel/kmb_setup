@@ -1,8 +1,12 @@
 echo "Start testing:"
 date
 
+export MAX_SUPPORT_CODEC=4
+
+export CODEC_USED=$((100/$MAX_SUPPORT_CODEC))
+
 oldnum=`cut -d ',' -f2 /data/kmb/codec`
-newnum=`expr $oldnum + 100`
+newnum=`expr $oldnum + $CODEC_USED`
 sed -i "s/$oldnum\$/$newnum/g" /data/kmb/codec
 
 source /data/source_container.env
@@ -22,7 +26,7 @@ gst-launch-1.0 multifilesrc location="%02d.h264" index=11 stop-index=20 \
 #! vaapih264enc ! avimux ! filesink location=$OUTPUT_MP4
 
 oldnum=`cut -d ',' -f2 /data/kmb/codec`
-newnum=`expr $oldnum - 100`
+newnum=`expr $oldnum - $CODEC_USED`
 sed -i "s/$oldnum\$/$newnum/g" /data/kmb/codec
 
 echo "Testing end:"
