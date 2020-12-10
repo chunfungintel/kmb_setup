@@ -1,6 +1,6 @@
 #!/bin/bash
 
-select name in A0 B0 ;
+select name in k3s k8s ;
 do
   case "$name" in
         k3s)
