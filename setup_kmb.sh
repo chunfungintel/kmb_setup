@@ -40,7 +40,8 @@ cp -r ./resources/release_kmb /data
 cp -r ./resources/avc_uncontained_woBframe /data
 cp -r ./resources/textures /data
 
-#cp -r edge-ai /etc
+# memory resize
+fw_setenv kmb-skip-codec-resize 1
 
 ./setup_intel.sh $NODE
 #./setup_vpu.sh
