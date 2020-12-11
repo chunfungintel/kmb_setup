@@ -41,7 +41,7 @@ cp -r ./resources/avc_uncontained_woBframe /data
 cp -r ./resources/textures /data
 
 # memory resize
-fw_setenv kmb-skip-codec-resize 1
+# fw_setenv kmb-skip-codec-resize 1
 
 ./setup_intel.sh $NODE
 #./setup_vpu.sh
