@@ -37,6 +37,7 @@ networking:
 scheduler:
   extraArgs:
     policy-config-file: /etc/edge-ai/scheduler/sched-policy-k8s.json
+    profiling: "false"
   extraVolumes:
   - name: kubeconfig-ros
     hostPath: "/etc/edge-ai/scheduler/sched-policy-k8s.json"
@@ -46,6 +47,14 @@ scheduler:
 apiServer:
   extraArgs:
     encryption-provider-config: $ENCRYPTION_CONFIG_FOLDER/$ENCRYPTION_CONFIG
+    profiling: "false"
+    audit-log-path: "/var/log/apiserver/audit.log"
+    audit-log-maxage: "30"
+    audit-log-maxbackup: "10"
+    audit-log-maxsize: "100"
+controllerManager:
+  extraArgs:
+    profiling: "false"
 EOF
 
 kubeadm init 	--config=kubeadm.yaml --v=5
