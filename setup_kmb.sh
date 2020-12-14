@@ -31,6 +31,8 @@ fi
 
 SERVER_IP=
 
+kubectl completion bash >/etc/bash_completion.d/kubectl
+
 cp ./resources/launch_gst_* /data
 cp ./resources/cat1080_frm5.h264 /data
 cp ./resources/$build/source* /data
