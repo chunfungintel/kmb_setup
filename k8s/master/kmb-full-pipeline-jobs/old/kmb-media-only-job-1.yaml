@@ -16,7 +16,7 @@ spec:
       containers:
         -
           name: kmb-full
-          image: gar-registry.caas.intel.com/virtiot/kmb_standalone:latest
+          image: gar-registry.caas.intel.com/virtiot/kmb_full:20201215-0817
           securityContext:
             privileged: true
             capabilities:
