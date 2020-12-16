@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM amr-cache-registry.caas.intel.com/cache/library/ubuntu:18.04
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt update -y

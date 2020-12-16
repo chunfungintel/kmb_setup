@@ -4,7 +4,7 @@ WORKDIR /go/src/edge-ai-device-plugin/hddl/devplugin
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflags "-static"' -o hddl_plugin .
 
 
-FROM ubuntu:20.04
+FROM amr-cache-registry.caas.intel.com/cache/library/ubuntu:20.04
 
 RUN \
   apt-get update && \
