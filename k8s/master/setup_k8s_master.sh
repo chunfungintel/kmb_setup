@@ -52,7 +52,6 @@ apiServer:
     audit-log-maxage: "30"
     audit-log-maxbackup: "10"
     audit-log-maxsize: "100"
-    enable-admission-plugins: "PodSecurityPolicy,NodeRestriction"
 controllerManager:
   extraArgs:
     profiling: "false"
