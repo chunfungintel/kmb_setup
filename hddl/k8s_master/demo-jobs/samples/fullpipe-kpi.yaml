@@ -17,5 +17,5 @@ spec:
         command: [ "/run_kpi.sh"]
         resources:
           limits:
-            kmb.intel.com/device: 3
+            edgeai.intel.com/kmb: 3
 

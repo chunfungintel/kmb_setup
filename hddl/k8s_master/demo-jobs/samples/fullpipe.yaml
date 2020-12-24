@@ -22,5 +22,5 @@ spec:
           value: "30"
         resources:
           limits:
-            kmb.intel.com/device: 3
+            edgeai.intel.com/kmb: 3
 

@@ -23,7 +23,7 @@ spec:
           value: "$HVA_TEST_TIMEOUT"
         resources:
           limits:
-            kmb.intel.com/device: $HDDL_KMB_COUNT
+            edgeai.intel.com/kmb: $HDDL_KMB_COUNT
         volumeMounts:
         - mountPath: /dev/dri/card0
           name: dri
