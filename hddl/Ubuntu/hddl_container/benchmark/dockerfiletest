@@ -31,7 +31,7 @@ RUN chown -R root:root ${BYPASS_DIR}
 #RUN tar -xvf ${BYPASS_DIR}/${HOST_PACKAGE_NAME}
 
 # XLink library location is missing at the moment in env_setup.sh
-ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HDDLUNITE_PATH}/thirdparty/XLink/lib
+ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HDDLUNITE_PATH}/thirdparty/XLink/lib:/opt/openvino/deployment_tools/inference_engine/external/hddl_unite/thirdparty/thermal/lib/
 
 COPY run_hddl_service.sh /run_hddl_service.sh
 ################################################################################
