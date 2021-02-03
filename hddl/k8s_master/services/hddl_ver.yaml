@@ -27,7 +27,7 @@ spec:
       volumes:
       - name: socket
         hostPath:
-          path: /tmp
+          path: /var/tmp
       - name: xlnk
         hostPath:
           path: /dev/xlnk
