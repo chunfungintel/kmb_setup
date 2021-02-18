@@ -25,11 +25,12 @@ default: ROS.crt ADAPTER.crt PROMETHEUS.crt COLLECTD.crt
 $(CA_KEY) $(CA_CRT):
 	@echo "Generating CA..."
 	@openssl req -x509 -sha384 -new -nodes -days 365 -newkey rsa:4096 -keyout $(CA_KEY) -out $(CA_CRT) -subj "/C=SG/ST=SG/O=MyOrg, Inc./CN=ca";
-
+	@base64 --wrap=0 < $@ > $@.base64
 
 %.key:
 	@echo "Generating server key..."
 	@openssl genrsa -out $@ 4096;
+	@base64 --wrap=0 < $@ > $@.base64
 
 
 %.csr: %.key
@@ -47,7 +48,7 @@ $(CA_KEY) $(CA_CRT):
 	@openssl x509 -req \
 	-extfile <(printf "subjectAltName=$($(basename $<)_SAN)") \
 	-in $(word 2,$^) -CA $(CA_CRT) -CAkey $(CA_KEY) -CAcreateserial -out $@ -days 365 -sha384
-
+	@base64 --wrap=0 < $@ > $@.base64
 
 
 
