@@ -34,7 +34,7 @@ RUN chown -R root:root ${BYPASS_DIR}
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HDDLUNITE_PATH}/thirdparty/XLink/lib:${HDDLUNITE_PATH}/thirdparty/Pms/lib:/opt/openvino/deployment_tools/inference_engine/external/hddl_unite/thirdparty/thermal/lib/
 
 COPY run_hddl_service.sh /run_hddl_service.sh
-COPY hddl_service.config ${HDDLUNITE_PATH}/config/hddl_service.config
+#COPY hddl_service.config ${HDDLUNITE_PATH}/config/hddl_service.config
 ################################################################################
 # hvasample
 ENV HVA_TEST_TIMEOUT=60
