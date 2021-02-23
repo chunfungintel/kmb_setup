@@ -20,13 +20,13 @@ spec:
         - sh
         - -c
         - |
-          while [ ! -S /tmp/hddlunite_service.sock ]; do
+          while [ ! -S /var/tmp/hddlunite_service.sock ]; do
             echo waiting for hddlunite_service.sock
             sleep 5s
           done
           echo created
         volumeMounts:
-        - mountPath: /tmp
+        - mountPath: /var/tmp
           name: socket
       containers:
       - name: devplugin
@@ -39,14 +39,14 @@ spec:
           name: xlnk
         - mountPath: /dev/dri/card0
           name: dri
-        - mountPath: /tmp
+        - mountPath: /var/tmp
           name: socket
         - mountPath: /var/lib/kubelet/device-plugins
           name: kubelet
       volumes:
       - name: socket
         hostPath:
-          path: /tmp
+          path: /var/tmp
       - name: xlnk
         hostPath:
           path: /dev/xlnk
