@@ -28,7 +28,7 @@ spec:
           echo created
         volumeMounts:
         - mountPath: /var/tmp
-          name: socket
+          name: tmpfs
       containers:
       - name: kmb-vpu-plugin
         image: $DEV_PLUGIN_IMAGE_NAME:$DEV_PLUGIN_IMAGE_TAG
