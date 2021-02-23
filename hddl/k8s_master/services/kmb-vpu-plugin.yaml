@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: kmb-vpu-plugin
+  namespace: kube-system
+  labels:
+    app: kmb-vpu-plugin
+spec:
+  selector:
+    matchLabels:
+      app: kmb-vpu-plugin
+  template:
+    metadata:
+      labels:
+        app: kmb-vpu-plugin
+    spec:
+      initContainers:
+      - name: await
+        image: busybox
+        command:
+        - sh
+        - -c
+        - |
+          while [ ! -S /var/tmp/hddlunite_service.sock ]; do
+            echo waiting for hddlunite_service.sock
+            sleep 5s
+          done
+          echo created
+        volumeMounts:
+        - mountPath: /var/tmp
+          name: socket
+      containers:
+      - name: kmb-vpu-plugin
+        image: $DEV_PLUGIN_IMAGE_NAME:$DEV_PLUGIN_IMAGE_TAG
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          readOnlyRootFilesystem: true
+          privileged: true
+        volumeMounts:
+        - name: tmpfs
+          mountPath: /var/tmp
+        - name: kubeletsockets
+          mountPath: /var/lib/kubelet/device-plugins
+        - name: podresource
+          mountPath: /var/lib/kubelet/pod-resources  
+        - mountPath: /dev/dri/card0
+          name: dri
+      volumes:
+      - name: tmpfs
+        hostPath:
+          path: /var/tmp
+      - name: kubeletsockets
+        hostPath:
+          path: /var/lib/kubelet/device-plugins
+      - name: podresource
+        hostPath:
+          path: /var/lib/kubelet/pod-resources
+      - name: dri
+        hostPath:
+          path: /dev/dri/card0
