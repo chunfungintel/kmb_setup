@@ -1,4 +1,5 @@
 /::l_openvino_toolkit_private_ubuntu18_kmb_x86_.*.tar.gz::OPENVINO_PACKAGE_NAME
 /host_packages::kmb-hddl-driver-.*_all.deb::DEB_PACKAGE_NAME
-/host_packages::bypass_host_hddlunite_hvasample_.*.tgz::HOST_PACKAGE_NAME
+/host_packages::vpu_accelerator_samples.deb::VPU_ACCELERATOR_PKG
+#/host_packages::bypass_host_hddlunite_hvasample_.*.tgz::HOST_PACKAGE_NAME
 #/host_packages::pms-host-*-x86_64.deb::PMS_PACKAGE_NAME

@@ -1,0 +1,9 @@
+FROM gar-registry.caas.intel.com/virtiot/hddlunite_connect:20210114-0315
+
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt update -y && \
+    apt install -y netcat
+
+
+COPY ./scripts/run_kpi_netcat.sh /run_kpi_netcat.sh
+

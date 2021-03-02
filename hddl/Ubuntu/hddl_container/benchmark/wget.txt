@@ -1,0 +1,3 @@
+https://ubit-artifactory-sh.intel.com/artifactory/sed-dgn-local/yocto/builds/2021/Mainline_BKC/20210302-0010/host_packages/vpu_accelerator_samples.deb
+https://ubit-artifactory-sh.intel.com/artifactory/sed-dgn-local/yocto/builds/2021/Mainline_BKC/20210302-0010/l_openvino_toolkit_private_ubuntu18_kmb_x86_p_2021.2.0-1883-136894d8164-releases_vpux_2021_2.tar.gz
+https://ubit-artifactory-sh.intel.com/artifactory/sed-dgn-local/yocto/builds/2021/Mainline_BKC/20210302-0010/host_packages/kmb-hddl-driver-dkms_0.1.0-57a38_all.deb
