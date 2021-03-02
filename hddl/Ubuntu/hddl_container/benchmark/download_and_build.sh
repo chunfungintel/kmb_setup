@@ -7,6 +7,7 @@
 #export USER_EXTERNAL=chunfung
 
 export KMB_LINK=$HOST_PACKAGE_LINK
+export KMB_FILE="download.txt"
 jupyter nbconvert --to python kmb_dl_scripts.ipynb
 
 rm dl_export
