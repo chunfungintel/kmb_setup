@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: $JOB_TYPE-$RANDOM_STR-01
+  labels:
+    jobgroup: hddl_pipe
+spec:
+  template:
+    metadata:
+      labels:
+        jobgroup: hddl_pipe
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: fullpipe
+        image: $HDDL_IMAGE_NAME:$HDDL_IMAGE_TAG
+        imagePullPolicy : IfNotPresent
+        command:
+        - sh
+        - -c
+        - |
+          echo "Sleeping..." && sleep infinity
+        env:
+        - name: TEST_NAME
+          value: "TEST_01"
+        - name: HVA_TEST_TIMEOUT
+          value: "$HVA_TEST_TIMEOUT"
+        resources:
+          limits:
+            intel.com/vpu: $HDDL_KMB_COUNT
+        volumeMounts:
+        - mountPath: /dev/dri/card0
+          name: dri
+        securityContext:
+          privileged: true
+      volumes:
+      - name: dri
+        hostPath:
+          path: /dev/dri/card0
+

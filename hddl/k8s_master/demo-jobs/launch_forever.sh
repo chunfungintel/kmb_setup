@@ -32,4 +32,4 @@ fi
 
 export RANDOM_STR=`head /dev/urandom | tr -dc a-z0-9 | head -c10`
 echo $RANDOM_STR
-envsubst < deployment.yaml | kubectl apply -f -
+envsubst < sleep.yaml | kubectl apply -f -
