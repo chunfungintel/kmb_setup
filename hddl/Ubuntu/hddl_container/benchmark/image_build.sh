@@ -47,10 +47,21 @@ export DL_LIST=wget.txt
 echo "$HOST_PACKAGE_LINK/host_packages/$VPU_ACCELERATOR_PKG" > $DL_LIST
 echo "$HOST_PACKAGE_LINK/$OPENVINO_PACKAGE_NAME" >> $DL_LIST
 echo "$HOST_PACKAGE_LINK/host_packages/$DEB_PACKAGE_NAME" >> $DL_LIST
+echo "$HOST_PACKAGE_LINK/blobs/compiled-models-gva.tar.bz2" >> $DL_LIST
+echo "$HOST_PACKAGE_LINK/blobs/compiled-models.tar.bz2" >> $DL_LIST
+
 wget $WGET_TAG -i $DL_LIST -P $HDDL_RESOURCE_FOLDER
 
 cp -r ./scripts/* $HDDL_RESOURCE_FOLDER
-cp ../../../../resources/release_kmb/* $HDDL_RESOURCE_FOLDER/test
+#cp ../../../../resources/release_kmb/* $HDDL_RESOURCE_FOLDER/test
+
+tar -xvf $HDDL_RESOURCE_FOLDER/compiled-models-gva.tar.bz2 --directory=$HDDL_RESOURCE_FOLDER
+tar -xvf $HDDL_RESOURCE_FOLDER/compiled-models.tar.bz2 --directory=$HDDL_RESOURCE_FOLDER
+cp $HDDL_RESOURCE_FOLDER/compiled-models/resnet-50-pytorch.blob $HDDL_RESOURCE_FOLDER/test
+cp $HDDL_RESOURCE_FOLDER/compiled-models/yolo-v2-tiny-ava-0001.blob $HDDL_RESOURCE_FOLDER/test
+mkdir -p $HDDL_RESOURCE_FOLDER/models
+cp $HDDL_RESOURCE_FOLDER/compiled-models/mobilenet-v2.blob $HDDL_RESOURCE_FOLDER/models
+
 
 docker build \
 --no-cache=false \

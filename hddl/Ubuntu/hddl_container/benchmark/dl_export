@@ -1,2 +1,0 @@
-export OPENVINO_PACKAGE_NAME=l_openvino_toolkit_private_ubuntu18_kmb_x86_p_2021.2.0-1883-136894d8164-releases_vpux_2021_2.tar.gz
-export DEB_PACKAGE_NAME=kmb-hddl-driver-dkms_0.1.0-57a38_all.deb
