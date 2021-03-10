@@ -21,7 +21,7 @@ fi
 
 export HDDL_TEST_FILE=/run_kpi.sh
 if [ -z "$HDDL_KMB_COUNT" ]; then
-    export HDDL_KMB_COUNT=3
+    export HDDL_KMB_COUNT=1
 fi
 if [ -z "$JOB_TYPE" ]; then
     export JOB_TYPE=kpi
