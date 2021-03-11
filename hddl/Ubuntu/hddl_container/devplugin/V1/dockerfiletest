@@ -1,6 +1,7 @@
 FROM golang:alpine as builder
-COPY edge-ai-device-plugin /go/src/edge-ai-device-plugin
-WORKDIR /go/src/edge-ai-device-plugin/hddl/devplugin
+ENV GOLANG_BUILD=edge-ai-device-plugin
+COPY ${GOLANG_BUILD} /go/src/edge-ai-device-plugin
+WORKDIR /go/src/${GOLANG_BUILD}/hddl/devplugin
 RUN GO111MODULE=auto CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflags "-static"' -o hddl_plugin .
 
 
