@@ -1,7 +1,7 @@
 FROM golang:alpine as builder
 COPY edge-ai-device-plugin /go/src/edge-ai-device-plugin
 WORKDIR /go/src/edge-ai-device-plugin/hddl/devplugin
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflags "-static"' -o hddl_plugin .
+RUN GO111MODULE=auto CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflags "-static"' -o hddl_plugin .
 
 
 FROM amr-cache-registry.caas.intel.com/cache/library/ubuntu:20.04
