@@ -24,6 +24,9 @@ spec:
           name: xlnk
         - mountPath: /var/tmp
           name: socket
+        - mountPath: /opt/intel/vpu_accelerator_samples/hddlunite/config/hddl_service.config
+          name: hddlserviceconfig
+          subPath: hddl_service.config
       volumes:
       - name: socket
         hostPath:
@@ -31,4 +34,6 @@ spec:
       - name: xlnk
         hostPath:
           path: /dev/xlnk
-
+      - name: hddlserviceconfig
+        configMap:
+          name: hddlserviceconfig
