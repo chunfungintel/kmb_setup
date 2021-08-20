@@ -71,7 +71,13 @@ echo "{
 # Docker DNS inside Intel
 cat << EOF | sudo -E tee  /etc/docker/daemon.json
 {
-    "dns": ["10.248.2.1"]
+    "dns": ["10.248.2.1"],
+    "exec-opts": ["native.cgroupdriver=systemd"],
+    "log-driver": "json-file",
+    "log-opts": {
+      "max-size": "100m"
+    },
+    "storage-driver": "overlay2"
 }
 EOF
 
